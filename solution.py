@@ -258,9 +258,7 @@ def data_normalization(X):
     :param X: np.array of shape n x (d+1)
     :return: np.array of shape n x (d+1)
     """
-    pass
-
-
+    return (X - np.mean(X, axis=0)) / np.std(X, axis=0)
 # %%
 '''
 ### Entropy of a Valid Discrete Probability Distribution
