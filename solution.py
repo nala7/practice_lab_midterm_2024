@@ -203,7 +203,23 @@ def even_odd_ordered(X):
     :param X: np.array of shape (n,)
     :return: np.array of shape (n,)
     """
-    pass
+    even_list = []
+    odd_list = []
+    for elem in X:
+        if elem % 2 == 0:
+            even_list.append(elem)
+        else:
+            odd_list.append(elem)
+
+    result = np.zeros(X.shape)
+    i = 0
+    for elem in even_list:
+        result[i] = elem
+        i += 1
+    for elem in odd_list:
+        result[i] = elem
+        i += 1
+    return result
 
 
 # %%
