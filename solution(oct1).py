@@ -16,7 +16,7 @@ the elements exactly equal to 1), and the rest of the list must be in reverse or
 Étant donné une liste d'entiers en entrée, renvoyer la même liste, mais avec tout les "1" à la fin
 (c'est à dire tout les éléments exactement égaux à 1), et le reste de la liste doit être en ordre 
 d'apparition inversé.
- 
+
 * [1, 1, 1] -> [1, 1, 1]
 * [5, 9, -12, 3] -> [3, -12, 9, 5]
 * [1, 2, 3, 1] -> [3, 2, 1, 1]
@@ -30,17 +30,17 @@ def ones_at_the_end(x):
     :param x: python int list
     :return: python int list
     """
-    other_nums = []
-    zeros = []
+    amount_of_ones = 0
+    result = []
     for i in range(len(x) - 1, -1, -1):
-        print(i)
         if x[i] == 1:
-            zeros.append(x[i])
+            amount_of_ones += 1
         else:
-            other_nums.append(x[i])
-
-    print(other_nums + zeros)
-    return other_nums + zeros
+            result.append(x[i])
+    while amount_of_ones > 0:
+        result.append(1)
+        amount_of_ones -= 1
+    return result
 
 
 # %%
@@ -73,7 +73,23 @@ def final_position(instructions):
     :param instructions: string
     :return: int tuple
     """
-    pass
+    x = 0
+    y = 0
+    left = -1
+    right = 1
+    up = 1
+    down = -1
+    instruction_list = instructions.split()
+    for instr in instruction_list:
+        if (instr == "left"):
+            x += left
+        if (instr == "right"):
+            x += right
+        if (instr == "up"):
+            y += up
+        if (instr == "down"):
+            y += down
+    return (x, y)
 
 
 # %%
@@ -114,8 +130,19 @@ def steps_to_one(i):
     :param i: int
     :return:  int
     """
-    pass
+    return recursive_steps_to_one(i, 0)
 
+
+def recursive_steps_to_one(i, step):
+    if i == 1:
+        return step
+    if i % 2 == 0:
+        return recursive_steps_to_one(i / 2, step + 1)
+    else:
+        return recursive_steps_to_one((3 * i + 1), step + 1)
+
+
+print(steps_to_one(7))
 
 # %%
 '''
@@ -176,7 +203,23 @@ def even_odd_ordered(X):
     :param X: np.array of shape (n,)
     :return: np.array of shape (n,)
     """
-    pass
+    even_list = []
+    odd_list = []
+    for elem in X:
+        if elem % 2 == 0:
+            even_list.append(elem)
+        else:
+            odd_list.append(elem)
+
+    result = np.zeros(X.shape)
+    i = 0
+    for elem in even_list:
+        result[i] = elem
+        i += 1
+    for elem in odd_list:
+        result[i] = elem
+        i += 1
+    return result
 
 
 # %%
@@ -215,9 +258,7 @@ def data_normalization(X):
     :param X: np.array of shape n x (d+1)
     :return: np.array of shape n x (d+1)
     """
-    pass
-
-
+    return (X - np.mean(X, axis=0)) / np.std(X, axis=0)
 # %%
 '''
 ### Entropy of a Valid Discrete Probability Distribution
@@ -253,6 +294,7 @@ def entropy(p):
     :return: float or None
     """
     pass
+
 
 # %%
 '''
